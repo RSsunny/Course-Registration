@@ -1,9 +1,9 @@
 import {BsCurrencyDollar,BsBook} from 'react-icons/bs';
 import PropTypes from 'prop-types';
 
-const Cart = ({cart}) => {
+const Cart = ({cart,handleAdd}) => {
     const {cover,credits,details,price,title_name}=cart
-    console.log(cart);
+    
     return (
         <div className='p-2 bg-white text-black rounded-md'>
             <div className="card ">
@@ -18,7 +18,7 @@ const Cart = ({cart}) => {
                         <span> Credit : {credits}hr</span>
                         </div>
                         <div className="card-actions ">
-                        <button className="btn btn-accent w-full text-xl font-normal">Select</button>
+                        <button onClick={()=>handleAdd(cart)} className="btn btn-accent w-full text-xl font-normal">Select</button>
                         </div>
                     </div>
                 </div>
@@ -26,7 +26,8 @@ const Cart = ({cart}) => {
     );
 };
 Cart.propTypes={
-    cart:PropTypes.object.isRequired
+    cart:PropTypes.object.isRequired,
+    handleAdd: PropTypes.func.isRequired
 }
 
 export default Cart;
