@@ -10,9 +10,9 @@ function App() {
 
   return (
     <>
-    <div>
+    <div className='max-w-7xl mx-auto px-5 '>
         <Header></Header>
-        <div>
+        <div className='flex flex-col-reverse md:flex-row gap-5'>
             <Carts></Carts>
             <List></List>
         </div>
