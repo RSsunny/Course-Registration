@@ -1,4 +1,5 @@
 import {BsCurrencyDollar,BsBook} from 'react-icons/bs';
+
 import PropTypes from 'prop-types';
 
 const Cart = ({cart,handleAdd}) => {
@@ -7,7 +8,7 @@ const Cart = ({cart,handleAdd}) => {
     return (
         <div className='p-2 bg-white text-black rounded-md'>
             <div className="card ">
-                    <figure ><img className='w-full' src={cover} alt="Shoes" /></figure>
+                    <figure ><img className='w-full hover:scale-125 overflow-hidden duration-700' src={cover} alt="Shoes" /></figure>
                     <div className="space-y-4">
                         <h2 className="text-xl font-semibold my-3">{title_name}</h2>
                         <p className='text-sm font-normal'>{details}</p>

@@ -12,6 +12,7 @@ function App() {
  const [total,setTotal]=useState(0)
  const [credit,setCredit]=useState(0)
  const [creditRemining,setCreditRemining]=useState(20)
+
  console.log(list);
  console.log(total);
  console.log(credit);
@@ -41,17 +42,27 @@ function App() {
     setTotal((newTotal))
     setList(newList)
   }
-  
+
   
  }
- 
+ const handleRemove=data=>{
+  const listRemove=list.filter(item=> item.title_name !== data.title_name)
+  const newTotal=total-data.price
+  const newCredit=credit-data.credits
+  const newCreditRemining=creditRemining+data.credits
+  setCreditRemining(newCreditRemining)
+  setCredit(newCredit)
+  setTotal(newTotal)
+  setList(listRemove)
+    
+ }
   return (
     <>
     <div className='max-w-7xl mx-auto px-5 '>
         <Header></Header>
         <div className='flex flex-col-reverse md:flex-row gap-5'>
             <Carts handleAdd={handleAdd}></Carts>
-            <List list={list} total={total} creditRemining={creditRemining} credit={credit} ></List>
+            <List list={list} total={total} creditRemining={creditRemining} credit={credit} handleRemove={handleRemove}></List>
         </div>
     </div>
     </>
