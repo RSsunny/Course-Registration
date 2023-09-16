@@ -1,10 +1,11 @@
 
-import { useState } from 'react'
+import {useState } from 'react'
 import './App.css'
 import Carts from './components/Carts/Carts'
 import Header from './components/Header/Header'
 import List from './components/List/List'
 import { toast } from 'react-toastify';
+import { addToCart } from './components/LocalStorage/LocalStorage'
 
 
 function App() {
@@ -12,10 +13,6 @@ function App() {
  const [total,setTotal]=useState(0)
  const [credit,setCredit]=useState(0)
  const [creditRemining,setCreditRemining]=useState(20)
-
- console.log(list);
- console.log(total);
- console.log(credit);
  const handleAdd=cart=>{
   const findlist=list.find(data=>data.title_name==cart.title_name)
   if(findlist){
@@ -34,6 +31,7 @@ function App() {
         autoClose: 3000
       });
     }
+    addToCart(cart.title_name)
     const newTotal=total+ cart.price
     const newList=[...list,cart]
     const totalRemaining=creditRemining-cart.credits
@@ -42,8 +40,6 @@ function App() {
     setTotal((newTotal))
     setList(newList)
   }
-
-  
  }
  const handleRemove=data=>{
   const listRemove=list.filter(item=> item.title_name !== data.title_name)
@@ -62,7 +58,9 @@ function App() {
         <Header></Header>
         <div className='flex flex-col-reverse md:flex-row gap-5'>
             <Carts handleAdd={handleAdd}></Carts>
-            <List list={list} total={total} creditRemining={creditRemining} credit={credit} handleRemove={handleRemove}></List>
+            <List 
+                list={list} total={total} creditRemining={creditRemining} credit={credit} handleRemove={handleRemove}>
+            </List>
         </div>
     </div>
     </>
